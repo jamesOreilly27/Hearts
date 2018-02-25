@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "webpack --mode development -w & nodemon server/app.js --ignore /client --ignore /public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,7 +18,12 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "volleyball": "^1.4.1"
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "volleyball": "^1.4.1",
+    "webpack-cli": "^2.0.9"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
