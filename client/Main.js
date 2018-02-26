@@ -3,7 +3,7 @@ import React from 'react'
 const Main = () => {
     return (
         <div>
-            <h1> Hello From Boilerplate!! </h1>
+            <h1> Play Hearts! </h1>
         </div>
     )
 }
