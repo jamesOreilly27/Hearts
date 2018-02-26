@@ -1,9 +1,23 @@
 const suits = ['Spades', 'Diamonds', 'Clubs', 'Hearts']
-const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+const values = [
+  {sortValue: 1, renderValue: '2'},
+  {sortValue: 2, renderValue: '3'},
+  {sortValue: 3, renderValue: '4'},
+  {sortValue: 4, renderValue: '5'},
+  {sortValue: 5, renderValue: '6'},
+  {sortValue: 6, renderValue: '7'},
+  {sortValue: 7, renderValue: '8'},
+  {sortValue: 8, renderValue: '9'},
+  {sortValue: 9, renderValue: '10'},
+  {sortValue: 10, renderValue: 'J'},
+  {sortValue: 11, renderValue: 'Q'},
+  {sortValue: 12, renderValue: 'K'},
+  {sortValue: 13, renderValue: 'A'}
+]
 
-function Card(suit, value, pointValue) {
+function Card(suit, values, pointValue) {
   this.suit = suit
-  this.value = value
+  this.values = values
   this.pointValue = pointValue
 }
 
@@ -17,7 +31,7 @@ const makeDeck = (deckCount) => {
         for(let j = 0; j < values.length; j++) {
           let pointValue = 0
           if(suits[i] === 'Hearts') pointValue = 1
-          if(suits[i] === 'Spades' && values[j] === 'Q') pointValue = 13
+          if(suits[i] === 'Spades' && values[j].renderValue === 'Q') pointValue = 13
           deck.push(new Card(suits[i], values[j], pointValue))
         }
       }
@@ -48,6 +62,21 @@ const deal = (deck, hand1, hand2, hand3, hand4) => {
   }
 }
 
+const sortHand = (hand) => {
+  hand.sort((a, b) => {
+    const aSuit = a.suit.toUpperCase()
+    const bSuit = b.suit.toUpperCase()
+    
+    const aValue = a.values.sortValue
+    const bValue = b.values.sortValue
+    
+    if(aSuit < bSuit || (aSuit === bSuit && aValue < bValue) ) return -1
+    if(aSuit > bSuit || (aSuit === bSuit && aValue > bValue) ) return 1
+    
+    return 0
+  })
+}
+
 const startHand = (deck) => {
   shuffle(deck)
   const player1Hand = []
@@ -56,12 +85,9 @@ const startHand = (deck) => {
   const player4Hand = []
   
   deal(deck, player1Hand, player2Hand, player3Hand, player4Hand)
-  console.log('player 1', player1Hand)
-  console.log('player 2', player2Hand)
-  console.log('player 3', player3Hand)
-  console.log('player 4', player4Hand)
+  
+  sortHand(player1Hand)
+  sortHand(player2Hand)
+  sortHand(player3Hand)
+  sortHand(player4Hand)
 }
-
-const fullDeck = makeDeck(1)
-
-startHand(fullDeck)
