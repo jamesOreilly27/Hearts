@@ -21,7 +21,7 @@ function Card(suit, values, pointValue) {
   this.pointValue = pointValue
 }
 
-const makeDeck = (deckCount) => {
+export const makeDeck = (deckCount) => {
   const deck = []
   if(deckCount <= 0) {
     return 'Invalid argument. Must pass in a number greater than 0'
@@ -90,4 +90,11 @@ const startHand = (deck) => {
   sortHand(player2Hand)
   sortHand(player3Hand)
   sortHand(player4Hand)
+
+  console.log(player1Hand)
+  console.log(player2Hand)
+  console.log(player3Hand)
+  console.log(player4Hand)
 }
+
+export default startHand

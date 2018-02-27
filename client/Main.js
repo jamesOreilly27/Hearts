@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from './components'
+import startHand, { makeDeck } from '../gameUtils'
 
 class Main extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class Main extends Component {
 
     handleClick() {
         this.setState({ gameOn: true })
+        startHand(makeDeck(1))
     }
 
     render() {
