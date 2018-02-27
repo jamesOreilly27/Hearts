@@ -1,19 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Button } from './components'
 
-const handleClick = () => {
-    console.log('Hello World!!')
-}
+class Main extends Component {
+    constructor(props) {
+        super(props)
 
-const Main = () => {
-    return (
-        <div>
-            <h1> Play Hearts! </h1>
-            <Button onClick={handleClick}>
-                Start Game
-            </Button>
-        </div>
-    )
+        this.state = {
+            gameOn: false
+        }
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick() {
+        this.setState({ gameOn: true })
+    }
+
+    render() {
+        return (
+            <div>
+                {!this.state.gameOn ?
+                    <div>
+                        <h1> Play Hearts! </h1>
+                        <Button onClick={this.handleClick}>
+                            Start Game
+                        </Button>
+                    </div>
+                :
+                    <h1> Hello World </h1>
+                }
+            </div>
+        )
+    }
 }
 
 export default Main
