@@ -7,14 +7,28 @@ class Main extends Component {
         super(props)
 
         this.state = {
-            gameOn: false
+            gameOn: false,
+            player1Hand: [],
+            player2Hand: [],
+            player3Hand: [],
+            player4Hand: []
         }
         this.handleClick = this.handleClick.bind(this)
     }
 
     handleClick() {
-        this.setState({ gameOn: true })
-        startHand(makeDeck(1))
+        const hands = startHand(makeDeck(1))
+        const player1Hand = hands.player1Hand
+        const player2Hand = hands.player2Hand
+        const player3Hand = hands.player3Hand
+        const player4Hand = hands.player4Hand
+        this.setState({
+            gameOn: true,
+            player1Hand,
+            player2Hand,
+            player3Hand,
+            player4Hand
+        })
     }
 
     render() {
@@ -28,7 +42,9 @@ class Main extends Component {
                         </Button>
                     </div>
                 :
-                    <h1> Hello World </h1>
+                    <h1> 
+                        Hello World
+                    </h1>
                 }
             </div>
         )

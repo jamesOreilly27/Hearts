@@ -91,10 +91,12 @@ const startHand = (deck) => {
   sortHand(player3Hand)
   sortHand(player4Hand)
 
-  console.log(player1Hand)
-  console.log(player2Hand)
-  console.log(player3Hand)
-  console.log(player4Hand)
+  return {
+    player1Hand,
+    player2Hand,
+    player3Hand,
+    player4Hand
+  }
 }
 
 export default startHand
