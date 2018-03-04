@@ -2,11 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
-	height: 8em;
+	height: 6em;
 	width: 3em;
 	border: 2px solid black;
 	text-align: center;
+	margin: 0 .2em 0;
 `
+
+const truncate = string => {
+	return string.slice(0, 3)
+}
 
 const Card = ({ card }) => (
 	<CardContainer>
@@ -14,7 +19,7 @@ const Card = ({ card }) => (
 			{card.values.renderValue}
 		</div>
 		<div>
-			{card.suit}
+			{truncate(card.suit)}
 		</div>
 	</CardContainer>
 )

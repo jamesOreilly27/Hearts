@@ -2,13 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import Card from './Card'
 
+const Container = styled.div`
+    display: flex;
+    margin-top: 80vh;
+`
+
 const Hand = props => (
-    <div>
+    <Container>
         {props.hand.map(card => {
-            console.log(card)
             return <Card key={card.sortValue} card={card}/>
         })}
-    </div>
+    </Container>
 )
 
 export default Hand
