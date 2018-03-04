@@ -8,26 +8,26 @@ class Main extends Component {
 
         this.state = {
             gameOn: false,
-            player1Hand: [],
-            player2Hand: [],
-            player3Hand: [],
-            player4Hand: []
+            player1: [],
+            player2: [],
+            player3: [],
+            player4: []
         }
         this.handleClick = this.handleClick.bind(this)
     }
 
     handleClick() {
         const hands = startHand(makeDeck(1))
-        const player1Hand = hands.player1Hand
-        const player2Hand = hands.player2Hand
-        const player3Hand = hands.player3Hand
-        const player4Hand = hands.player4Hand
+        const player1 = hands.player1Hand
+        const player2 = hands.player2Hand
+        const player3 = hands.player3Hand
+        const player4 = hands.player4Hand
         this.setState({
             gameOn: true,
-            player1Hand,
-            player2Hand,
-            player3Hand,
-            player4Hand
+            player1,
+            player2,
+            player3,
+            player4
         })
     }
 
