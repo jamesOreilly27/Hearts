@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import Card from './Card'
 
 const Hand = props => (
     <div>
-        Hello World!
+        {props.hand.map(card => {
+            console.log(card)
+            return <Card key={card.sortValue} card={card}/>
+        })}
     </div>
 )
-
-// {props.hand.forEach(card => {
-//     <Card />
-// })}
 
 export default Hand

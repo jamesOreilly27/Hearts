@@ -42,7 +42,7 @@ class Main extends Component {
                         </Button>
                     </div>
                 :
-                    <Hand />
+                    <Hand hand={this.state.player1}/>
                 }
             </div>
         )
