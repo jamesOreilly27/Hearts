@@ -2,16 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import Card from './Card'
 
-const Container = styled.div`
+export const HandContainer = styled.div`
     display: flex;
 `
 
 const Hand = props => (
-    <Container>
+    <HandContainer>
         {props.hand.map(card => {
             return <Card key={card.sortValue} card={card}/>
         })}
-    </Container>
+    </HandContainer>
 )
 
 export default Hand

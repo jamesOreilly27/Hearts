@@ -41,7 +41,7 @@ class Main extends Component {
                         </Button>
                     </div>
                 :
-                    <GameplayArea />
+                    <GameplayArea hands={this.state.hands} />
                 }
             </div>
         )
