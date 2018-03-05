@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
-	height: 6em;
+	height: 4em;
 	width: 3em;
 	border: 2px solid black;
 	text-align: center;

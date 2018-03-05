@@ -3,7 +3,10 @@ import styled from 'styled-components'
 import Card from './Card'
 
 export const HandContainer = styled.div`
-  display: flex;
+	display: flex;
+	justify-content: center;
+	width: 80%;
+	height: 10%;
 `
 
 const Hand = props => (
