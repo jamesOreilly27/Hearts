@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Hand } from './components'
+import { Button, GameplayArea } from './components'
 import startHand, { makeDeck } from '../gameUtils'
 
 class Main extends Component {
@@ -42,7 +42,7 @@ class Main extends Component {
                         </Button>
                     </div>
                 :
-                    <Hand hand={this.state.player1}/>
+                    <GameplayArea />
                 }
             </div>
         )
