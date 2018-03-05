@@ -8,10 +8,7 @@ class Main extends Component {
 
         this.state = {
             gameOn: false,
-            player1: [],
-            player2: [],
-            player3: [],
-            player4: []
+            hands: {}
         }
         this.handleClick = this.handleClick.bind(this)
     }
@@ -24,10 +21,12 @@ class Main extends Component {
         const player4 = hands.player4Hand
         this.setState({
             gameOn: true,
-            player1,
-            player2,
-            player3,
-            player4
+            hands: {
+                player1,
+                player2,
+                player3,
+                player4
+            }
         })
     }
 
