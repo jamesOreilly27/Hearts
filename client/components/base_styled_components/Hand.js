@@ -4,7 +4,6 @@ import Card from './Card'
 
 const Container = styled.div`
     display: flex;
-    margin-top: 80vh;
 `
 
 const Hand = props => (
