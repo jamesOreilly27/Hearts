@@ -14,19 +14,19 @@ class Main extends Component {
   }
 
   handleClick() {
-    const hands = startHand(makeDeck(1))
-    const player1 = hands.player1Hand
-    const player2 = hands.player2Hand
-    const player3 = hands.player3Hand
-    const player4 = hands.player4Hand
+    const createdHands = startHand(makeDeck(1))
+    const user = createdHands.player1Hand
+    const comp1 = createdHands.player2Hand
+    const comp2 = createdHands.player3Hand
+    const comp3 = createdHands.player4Hand
 		
 		this.setState({
       gameOn: true,
       hands: {
-        player1,
-        player2,
-        player3,
-        player4
+        user,
+        comp1,
+        comp2,
+        comp3
       }
     })
   }
