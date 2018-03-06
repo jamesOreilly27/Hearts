@@ -1,6 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
+const colorProvider = suit => {
+	if(suit === 'Diamonds' || suit === 'Hearts') return 'red'
+	return 'black'
+}
+
 const CardContainer = styled.div`
 	height: 4em;
 	width: 3em;
@@ -14,7 +19,8 @@ const truncate = string => {
 }
 
 const Card = ({ card }) => (
-	<CardContainer>
+	<CardContainer style={{ color: colorProvider(card.suit)}}
+	>
 		<div>
 			{card.values.renderValue}
 		</div>
