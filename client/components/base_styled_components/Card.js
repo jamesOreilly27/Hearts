@@ -7,20 +7,20 @@ const colorProvider = suit => {
 }
 
 const CardContainer = styled.div`
-	height: 4em;
+	height: ${props => props.sideCard ? '1.5em' : '3em'};
 	width: 3em;
 	border: 2px solid black;
 	text-align: center;
-	margin: 0 .2em 0;
+	margin: ${props => props.sideCard ? '.2em 0' : '0 .2em'};
+	color: ${props => colorProvider(props.suit)};
 `
 
 const truncate = string => {
 	return string.slice(0, 3)
 }
 
-const Card = ({ card }) => (
-	<CardContainer style={{ color: colorProvider(card.suit)}}
-	>
+const Card = ({ card, sideCard }) => (
+	<CardContainer suit={card.suit} sideCard={sideCard}>
 		<div>
 			{card.values.renderValue}
 		</div>

@@ -1,49 +1,56 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Hand, HandContainer } from '../components'
+import {Hand, HandWrapper } from '../components'
 
-const Container = styled.div`
+const Wrapper = styled.div`
   width: 96vw;
   height: 96vh;
-  margin: 1.5vh 1.5vw;
+	margin: 1.5vh 1.5vw;
 `
 
-const Comp2Container = HandContainer.extend`
+const MiddleContainer = styled.div`
+	width: 96vw;
+	display: flex;
+	justify-content: space-between;
+`
+
+const Comp2Container = HandWrapper.extend`
 	margin: 0 auto;
 `
-const Comp1Container = HandContainer.extend`
-	margin-left: -15em;
-	margin-top: 14em;
-	transform: rotate(90deg);
+const Comp1Container = HandWrapper.extend`
+	width: 10vw;
 `
-const Comp3Container = HandContainer.extend`
-	margin-left: 24em;
-	margin-top: -3.9em;
-	transform: rotate(-90deg);
+const Comp3Container = HandWrapper.extend`
+	width: 10vw;
 `
-const UserContainer = HandContainer.extend`
-	margin: 12.5em auto 0;
+const UserContainer = HandWrapper.extend`
+	margin: 0 auto;
+
 `
 
 const GameplayArea = ({ hands }) => {
   return (
-    <Container>
+    <Wrapper>
 			<Comp2Container>
 				<Hand hand={hands.comp2} />				
 			</Comp2Container>
 			
-			<Comp1Container>
-				<Hand hand={hands.comp1} />
-			</Comp1Container>
-			
-			<Comp3Container>
-				<Hand hand={hands.comp3} />
-			</Comp3Container>
+			<MiddleContainer>
+				<Comp1Container sideHand>
+					<Hand hand={hands.comp1} sideHand/>
+				</Comp1Container>
+				<div>
+					Hello World!
+				</div>
+				<Comp3Container sideHand>
+					<Hand hand={hands.comp3} sideHand/>
+				</Comp3Container>
+			</MiddleContainer>
 			
       <UserContainer>
-				<Hand hand={hands.user} />
+				<Hand hand={hands.user} user/>
 			</UserContainer>
-    </Container>
+    </Wrapper>
   )
 }
 
