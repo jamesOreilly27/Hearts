@@ -4,8 +4,9 @@ import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import hands from './hands'
 import passCards from './passCards'
+import handCount from './handCount'
 
-const reducer = combineReducers({ hands, passCards })
+const reducer = combineReducers({ hands, passCards, handCount })
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -17,3 +18,4 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './hands'
 export * from './passCards'
+export * from './handCount'
