@@ -78,24 +78,24 @@ const sortHand = (hand) => {
 }
 
 const startHand = (deck) => {
-  const player1Hand = []
-  const player2Hand = []
-  const player3Hand = []
-  const player4Hand = []
+  const user = []
+  const comp1 = []
+  const comp2 = []
+  const comp3 = []
   
   shuffle(deck)
-  deal(deck, player1Hand, player2Hand, player3Hand, player4Hand)
+  deal(deck, user, comp1, comp2, comp3)
   
-  sortHand(player1Hand)
-  sortHand(player2Hand)
-  sortHand(player3Hand)
-  sortHand(player4Hand)
+  sortHand(user)
+  sortHand(comp1)
+  sortHand(comp2)
+  sortHand(comp3)
 
   return {
-    player1Hand,
-    player2Hand,
-    player3Hand,
-    player4Hand
+    user,
+    comp1,
+    comp2,
+    comp3
   }
 }
 

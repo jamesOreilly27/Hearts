@@ -32,8 +32,7 @@ const UserContainer = HandWrapper.extend`
 const GameplayArea = ({ hands }) => {
   return (
     <Wrapper>
-			{console.log(hands)}
-			{/* <Comp2Container>
+			<Comp2Container>
 				<Hand hand={hands.comp2} />				
 			</Comp2Container>
 			
@@ -51,7 +50,7 @@ const GameplayArea = ({ hands }) => {
 			
       <UserContainer>
 				<Hand hand={hands.user} user/>
-			</UserContainer> */}
+			</UserContainer>
 
     </Wrapper>
   )
