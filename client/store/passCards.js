@@ -1,20 +1,32 @@
 const ADD_PASSCARD = 'ADD_PASSCARD'
+const REMOVE_PASSCARD = 'REMOVE_PASSCARD'
 
 const selectPasscard = card => ({
   type: ADD_PASSCARD,
   payload: card
 })
 
-export const newPassCardThunk = card => dispatch => {
+const deselectPasscard = card => ({
+	type: REMOVE_PASSCARD,
+	payload: card
+})
+
+export const newPasscardThunk = card => dispatch => {
   dispatch(selectPasscard(card))
 }
 
-const reducer = (prevState = [], action) => {
+export const undoPasscardThunk = card => dispatch => {
+	dispatch(deselectPasscard(card))
+}
+
+const reducer = (passCards = [], action) => {
   switch (action.type) {
     case ADD_PASSCARD:
-      return prevState.concat(action.payload)
+			return [...passCards, action.payload]
+		case REMOVE_PASSCARD:
+			return passCards.filter(passCard => passCard !== action.payload)
     default:
-      return prevState
+      return passCards
   }
 }
 
