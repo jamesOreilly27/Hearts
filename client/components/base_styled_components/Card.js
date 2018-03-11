@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { newPassCardThunk } from '../../store'
+import { newPasscardThunk, undoPasscardThunk } from '../../store'
 
 const colorProvider = suit => {
 	if(suit === 'Diamonds' || suit === 'Hearts') return 'red'
@@ -23,27 +23,29 @@ const truncate = string => {
 class Card extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			selectedForPass: false
-		}
+		this.state = { selectedForPass: false }
 
 		this.handleClick = this.handleClick.bind(this)
 	}
 
 	handleClick() {
-		this.props.passCards.length < 3 ? 
-			this.props.selectCard(this.props.card) 
-			:
-			alert('You have already selected 3 cards')
-
-		this.setState({ selectedForPass: true })
+		if(!this.state.selectedForPass) {
+			this.props.passCards.length < 3 ? 
+				this.props.selectCard(this.props.card) 
+				:
+				alert('You have already selected 3 cards')
+	
+			this.setState({ selectedForPass: true })
+		} else {
+			this.props.deselectCard(this.props.card)
+			this.setState({ selectedForPass: false })
+		}
 	}
 
 	render() {
 		const { card, sideCard, selectCard } = this.props
 		return (
 			<CardContainer suit={card.suit} sideCard={sideCard}onClick={this.handleClick}>
-				{console.log(this.state)}
 				<div>
 					{card.values.renderValue}
 				</div>
@@ -60,7 +62,11 @@ const mapState = ({ passCards }) => ({ passCards })
 const mapDispatch = dispatch => {
 	return {
 		selectCard(card) {
-			dispatch(newPassCardThunk(card))
+			dispatch(newPasscardThunk(card))
+		},
+
+		deselectCard(card) {
+			dispatch(undoPasscardThunk(card))
 		}
 	}
 }
