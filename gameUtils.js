@@ -78,12 +78,12 @@ const sortHand = (hand) => {
 }
 
 const startHand = (deck) => {
-  shuffle(deck)
   const player1Hand = []
   const player2Hand = []
   const player3Hand = []
   const player4Hand = []
   
+  shuffle(deck)
   deal(deck, player1Hand, player2Hand, player3Hand, player4Hand)
   
   sortHand(player1Hand)

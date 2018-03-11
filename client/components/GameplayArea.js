@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import {Hand, HandWrapper } from '../components'
 
@@ -31,7 +32,8 @@ const UserContainer = HandWrapper.extend`
 const GameplayArea = ({ hands }) => {
   return (
     <Wrapper>
-			<Comp2Container>
+			{console.log(hands)}
+			{/* <Comp2Container>
 				<Hand hand={hands.comp2} />				
 			</Comp2Container>
 			
@@ -49,9 +51,12 @@ const GameplayArea = ({ hands }) => {
 			
       <UserContainer>
 				<Hand hand={hands.user} user/>
-			</UserContainer>
+			</UserContainer> */}
+
     </Wrapper>
   )
 }
 
-export default GameplayArea
+const mapState = ({ hands }) => ({ hands })
+
+export default connect(mapState)(GameplayArea)

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Button, GameplayArea } from './components'
+import { dealCardsThunk } from './store'
 import startHand, { makeDeck } from '../gameUtils'
 
 class Main extends Component {
@@ -11,21 +13,8 @@ class Main extends Component {
   }
 
   handleClick() {
-    const createdHands = startHand(makeDeck(1))
-    const user = createdHands.player1Hand
-    const comp1 = createdHands.player2Hand
-    const comp2 = createdHands.player3Hand
-    const comp3 = createdHands.player4Hand
-		
-		this.setState({
-      gameOn: true,
-      hands: {
-        user,
-        comp1,
-        comp2,
-        comp3
-      }
-    })
+    this.props.deal(startHand(makeDeck(1)))
+		this.setState({ gameOn: true })
   }
 
   render() {
@@ -39,11 +28,21 @@ class Main extends Component {
               </Button>
           </div>
         :
-          <GameplayArea hands={this.state.hands} />
+          <GameplayArea />
         }
       </div>
     )
   }
 }
 
-export default Main
+const mapState = state => state
+
+const mapDispatch = dispatch => {
+  return {
+    deal(hands) {
+      dispatch(dealCardsThunk(hands))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(Main)
