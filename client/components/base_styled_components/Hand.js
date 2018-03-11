@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 import Card from './Card'
 import Button from './Button'
 
@@ -19,16 +20,25 @@ const PassButton = Button.extend`
   color: #FFF;
   text-align: center;
 `
-const Hand = ({ hand, user, sideHand }) => (
+
+const passWhere = (handCount) => {
+  const check = handCount % 4
+  if(check === 0) return 'left'
+  if(check === 1) return 'right'
+  if(check === 2) return 'across'
+}
+
+
+const Hand = ({ hand, user, sideHand, handCount }) => (
   <HandWrapper user={user} sideHand={sideHand}>
     <div>
       {user &&
         <div>
           <div>
-            Pass Cards to the Left
+            Select Cards to Pass
           </div>
           <PassButton>
-            Pass
+            Pass {passWhere(handCount)}
           </PassButton>
         </div>
       }
@@ -41,4 +51,6 @@ const Hand = ({ hand, user, sideHand }) => (
   </HandWrapper>
 )
 
-export default Hand
+const mapState = ({ handCount }) => ({ handCount })
+
+export default connect(mapState)(Hand)
