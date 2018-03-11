@@ -29,7 +29,9 @@ const passWhere = (handCount) => {
 }
 
 
-const Hand = ({ hand, user, sideHand, handCount }) => (
+const Hand = ({ hand, user, sideHand, handCount }) => {
+  const passTo = passWhere(handCount)
+  return (
   <HandWrapper user={user} sideHand={sideHand}>
     <div>
       {user &&
@@ -38,7 +40,7 @@ const Hand = ({ hand, user, sideHand, handCount }) => (
             Select Cards to Pass
           </div>
           <PassButton>
-            Pass {passWhere(handCount)}
+            Pass {passTo}
           </PassButton>
         </div>
       }
@@ -49,7 +51,7 @@ const Hand = ({ hand, user, sideHand, handCount }) => (
       })}
     </Container>
   </HandWrapper>
-)
+)}
 
 const mapState = ({ handCount }) => ({ handCount })
 
