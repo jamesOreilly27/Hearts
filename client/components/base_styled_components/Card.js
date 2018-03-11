@@ -10,7 +10,7 @@ const colorProvider = suit => {
 
 const CardContainer = styled.button`
 	margin: ${props => props.sideCard ? '.2em 0' : '0 .2em'};
-	border: 1px solid black;
+	border: ${props => props.selected ? '2px solid green' : '1px solid black'};
 	text-align: center;
 	color: ${props => colorProvider(props.suit)};
 	font-size: ${props => props.sideCard ? '.7em' : '.9em'}
@@ -45,7 +45,12 @@ class Card extends Component {
 	render() {
 		const { card, sideCard, selectCard } = this.props
 		return (
-			<CardContainer suit={card.suit} sideCard={sideCard}onClick={this.handleClick}>
+			<CardContainer
+				suit={card.suit}
+				sideCard={sideCard}
+				onClick={this.handleClick}
+				selected={this.state.selectedForPass}
+			>
 				<div>
 					{card.values.renderValue}
 				</div>
