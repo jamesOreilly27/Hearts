@@ -43,7 +43,7 @@ class Card extends Component {
 	}
 
 	render() {
-		const { card, sideCard, selectCard } = this.props
+		const { card, sideCard } = this.props
 		return (
 			<CardContainer
 				suit={card.suit}
