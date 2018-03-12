@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import Card from './Card'
 import Button from './Button'
-import passLeft from '../../utils/passingCards'
+import passCards from '../../utils/passingCards'
+import { passCardsThunk } from '../../store'
 
 export const HandWrapper = styled.div`
   width: 80%;
@@ -38,13 +39,16 @@ class Hand extends Component {
   }
 
   handleClick() {
-		passLeft(
+		this.props.completePass(
+      passCards(
+      this.props.handCount,
 			this.props.passCards,
 			this.props.hands.user,
 			this.props.hands.comp1,
 			this.props.hands.comp2,
 			this.props.hands.comp3
-		)
+      )
+    )
   }
   
   render() {
@@ -76,4 +80,12 @@ class Hand extends Component {
 
 const mapState = ({ handCount, hands, passCards }) => ({ handCount, hands, passCards })
 
-export default connect(mapState)(Hand)
+const mapDispatch = dispatch => {
+  return {
+    completePass(newHands) {
+      dispatch(passCardsThunk(newHands))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(Hand)

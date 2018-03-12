@@ -1,3 +1,5 @@
+import { sortHand } from './deck'
+
 const removeRandomIndex = array => {
   const random = Math.floor(Math.random() * array.length)
   return array.slice(0, random).concat(array.slice(random + 1))
@@ -60,7 +62,10 @@ const passCards = (handCount, userPassCards, userHand, comp1Hand, comp2Hand, com
 	const compHandsArray = [comp1Hand, comp2Hand, comp3Hand]
 	const holdAndPass = setAllPassAndHoldCards(userHand, userPassCards, compHandsArray)
 	const passWhereInt = handCount % 3
-	const user, comp1, comp2, comp3
+	let user,
+			comp1,
+			comp2,
+			comp3
 
 	if(passWhereInt === 0) {
 		user = holdAndPass.holdCards.user.concat(holdAndPass.passCards.comp3)
@@ -78,6 +83,11 @@ const passCards = (handCount, userPassCards, userHand, comp1Hand, comp2Hand, com
 		comp2 = holdAndPass.holdCards.comp2.concat(holdAndPass.passCards.user)
 		comp3 = holdAndPass.holdCards.comp3.concat(holdAndPass.passCards.comp1)
 	}
+
+	sortHand(user)
+	sortHand(comp1)
+	sortHand(comp2)
+	sortHand(comp3)
 
 	return {
 		user,

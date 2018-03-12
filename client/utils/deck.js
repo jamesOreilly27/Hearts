@@ -62,7 +62,7 @@ const deal = (deck, hand1, hand2, hand3, hand4) => {
   }
 }
 
-const sortHand = (hand) => {
+export const sortHand = (hand) => {
   hand.sort((a, b) => {
     const aSuit = a.suit.toUpperCase()
     const bSuit = b.suit.toUpperCase()
