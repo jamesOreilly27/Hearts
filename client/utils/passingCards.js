@@ -13,14 +13,20 @@ const setSingleCompPassCards = (hand, holdCards) => {
 	})
 }
 
+const setUserHoldCards = (userHand, userPassCards) => {
+	return userHand.filter(card => {
+		return userPassCards.indexOf(card) < 0
+	})
+}
+
 function PassCardsSet(userPassCards, compHandsArray, holdCardsSet) {
 	this.user = userPassCards
 	this.comp1 = setSingleCompPassCards(compHandsArray[0], holdCardsSet.comp1)
 	this.comp2 = setSingleCompPassCards(compHandsArray[1], holdCardsSet.comp2)
 	this.comp3 = setSingleCompPassCards(compHandsArray[2], holdCardsSet.comp3)
 }
-function HoldCardsSet(userHand, compHandsArray) {
-	this.user = userHand
+function HoldCardsSet(userHand, userPassCards, compHandsArray) {
+	this.user = setUserHoldCards(userHand, userPassCards)
 	this.comp1 = compHandsArray[0]
 	this.comp2 = compHandsArray[1]
 	this.comp3 = compHandsArray[2]
@@ -30,6 +36,7 @@ const setAllPassAndHoldCards = (userHand, userPassCards, compHandsArray) => {
 	const holdCards =
 		new HoldCardsSet(
 			userHand,
+			userPassCards,
 			compHandsArray.map(hand => {
 				return removeThree(hand)
 			})
@@ -41,7 +48,6 @@ const setAllPassAndHoldCards = (userHand, userPassCards, compHandsArray) => {
 		holdCards,
 		passCards
 	}
-
 }
 
 const passLeft = (userPassCards, userHand, comp1Hand, comp2Hand, comp3Hand) => {
