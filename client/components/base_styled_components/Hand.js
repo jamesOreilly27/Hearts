@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Card from './Card'
 import Button from './Button'
 import passCards from '../../utils/passingCards'
-import { passCardsThunk } from '../../store'
+import { passCardsThunk, incrementHandCountThunk } from '../../store'
 
 export const HandWrapper = styled.div`
   width: 80%;
@@ -49,6 +49,8 @@ class Hand extends Component {
 			this.props.hands.comp3
       )
     )
+
+    this.props.incrementHandCount(this.props.handCount)
   }
   
   render() {
@@ -84,6 +86,9 @@ const mapDispatch = dispatch => {
   return {
     completePass(newHands) {
       dispatch(passCardsThunk(newHands))
+    },
+    incrementHandCount(int) {
+      dispatch(incrementHandCountThunk(int))
     }
   }
 }

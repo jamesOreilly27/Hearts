@@ -2,7 +2,7 @@ const INCREMENT_HAND_COUNT = 'INCREMENT_HAND_COUNT'
 
 const increment = int => ({
   type: INCREMENT_HAND_COUNT,
-  payload: int
+  payload: int + 1
 })
 
 export const incrementHandCountThunk = int => dispatch => {
