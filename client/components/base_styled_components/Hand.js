@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import Card from './Card'
 import Button from './Button'
+import passLeft from '../../utils/passingCards'
 
 export const HandWrapper = styled.div`
   width: 80%;
