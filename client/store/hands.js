@@ -9,12 +9,12 @@ export const dealCardsThunk = hands => dispatch => {
   dispatch(dealCards(hands))
 }
 
-const reducer = (prevState = {}, action) => {
+const reducer = (hands = {}, action) => {
   switch (action.type) {
     case DEAL_CARDS:
       return action.payload
     default:
-      return prevState
+      return hands
   }
 }
 
