@@ -35,7 +35,7 @@ export const makeDeck = (deckCount) => {
           deck.push(new Card(suits[i], values[j], pointValue))
         }
       }
-      deckCount--
+    	deckCount--
     }
     return deck
   }

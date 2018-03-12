@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import Card from './Card'
@@ -29,30 +29,50 @@ const passWhere = (handCount) => {
 }
 
 
-const Hand = ({ hand, user, sideHand, handCount }) => {
-  const passTo = passWhere(handCount)
-  return (
-  <HandWrapper user={user} sideHand={sideHand}>
-    <div>
-      {user &&
-        <div>
-          <div>
-            Select Cards to Pass
-          </div>
-          <PassButton>
-            Pass {passTo}
-          </PassButton>
-        </div>
-      }
-    </div>
-    <Container sideHand={sideHand}>
-      {hand.map(card => {
-        return <Card key={card.sortValue} card={card} sideCard={sideHand}/>
-      })}
-    </Container>
-  </HandWrapper>
-)}
+class Hand extends Component {
+  constructor(props) {
+    super(props)
 
-const mapState = ({ handCount }) => ({ handCount })
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+		passLeft(
+			this.props.passCards,
+			this.props.hands.user,
+			this.props.hands.comp1,
+			this.props.hands.comp2,
+			this.props.hands.comp3
+		)
+  }
+  
+  render() {
+    const { hand, user, sideHand, handCount } = this.props
+    const passTo = passWhere(handCount)
+    return (
+    <HandWrapper user={user} sideHand={sideHand}>
+      <div>
+        {user &&
+          <div>
+            <div>
+              Select Cards to Pass
+            </div>
+            <PassButton onClick={this.handleClick}>
+              Pass {passTo}
+            </PassButton>
+          </div>
+        }
+      </div>
+      <Container sideHand={sideHand}>
+        {hand.map(card => {
+          return <Card key={card.sortValue} card={card} sideCard={sideHand}/>
+        })}
+      </Container>
+    </HandWrapper>
+    )
+  }
+} 
+
+const mapState = ({ handCount, hands, passCards }) => ({ handCount, hands, passCards })
 
 export default connect(mapState)(Hand)

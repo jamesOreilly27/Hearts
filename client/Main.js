@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, GameplayArea } from './components'
 import { dealCardsThunk } from './store'
-import startHand, { makeDeck } from '../gameUtils'
+import startHand, { makeDeck } from '../client/utils/deck'
 
 class Main extends Component {
   constructor(props) {
