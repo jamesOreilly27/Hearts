@@ -11,9 +11,11 @@ const Container = styled.div`
 `
 
 const TrickArea = props => {
-	<Wrapper>
-		Hello World!
-	</Wrapper>
+	return (
+		<Wrapper>
+			Hello World!
+		</Wrapper>
+	)
 }
 
 export default TrickArea

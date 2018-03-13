@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import {Hand, HandWrapper } from '../components'
+import {Hand, HandWrapper, TrickArea } from '../components'
 
 const Wrapper = styled.div`
   width: 96vw;
@@ -40,9 +40,9 @@ const GameplayArea = ({ hands }) => {
 				<Comp1Container sideHand>
 					<Hand hand={hands.comp1} sideHand/>
 				</Comp1Container>
-				<div>
+				<TrickArea>
 					Hello World!
-				</div>
+				</TrickArea>
 				<Comp3Container sideHand>
 					<Hand hand={hands.comp3} sideHand/>
 				</Comp3Container>
