@@ -34,6 +34,7 @@ const passWhere = (handCount) => {
 class Hand extends Component {
   constructor(props) {
     super(props)
+    this.state = { donePassing: false }
 
     this.handleClick = this.handleClick.bind(this)
   }
@@ -51,8 +52,8 @@ class Hand extends Component {
     )
 
     this.props.incrementHandCount(this.props.handCount)
-
     this.props.resetUserPassCards()
+    this.setState({ donePassing: true })
   }
   
   render() {
@@ -61,7 +62,7 @@ class Hand extends Component {
     return (
     <HandWrapper user={user} sideHand={sideHand}>
       <div>
-        {user &&
+        {user && !this.state.donePassing &&
           <div>
             <div>
               Select Cards to Pass
@@ -74,7 +75,12 @@ class Hand extends Component {
       </div>
       <Container sideHand={sideHand}>
         {hand.map(card => {
-          return <Card key={card.sortValue} card={card} sideCard={sideHand}/>
+          return <Card
+            key={card.sortValue}
+            card={card}
+            sideCard={sideHand}
+            donePassing={this.state.donePassing}
+          />
         })}
       </Container>
     </HandWrapper>
