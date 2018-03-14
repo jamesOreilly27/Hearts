@@ -1,7 +1,12 @@
-import { expect } from 'chai'
+import chai, { expect } from 'chai'
+import spies from 'chai-spies'
 import * as deck from './deck'
 
+chai.use(spies)
+
 const {
+	suits,
+	values,
   Card,
 	makeDeck,
 	shuffle,
@@ -13,22 +18,6 @@ const {
 describe('Card constructor function', () => {
 	let card1;
 	beforeEach(() => {
-		const suits = ['Spades', 'Diamonds', 'Clubs', 'Hearts']
-		const values = [
-			{sortValue: 1, renderValue: '2'},
-			{sortValue: 2, renderValue: '3'},
-			{sortValue: 3, renderValue: '4'},
-			{sortValue: 4, renderValue: '5'},
-			{sortValue: 5, renderValue: '6'},
-			{sortValue: 6, renderValue: '7'},
-			{sortValue: 7, renderValue: '8'},
-			{sortValue: 8, renderValue: '9'},
-			{sortValue: 9, renderValue: '10'},
-			{sortValue: 10, renderValue: 'J'},
-			{sortValue: 11, renderValue: 'Q'},
-			{sortValue: 12, renderValue: 'K'},
-			{sortValue: 13, renderValue: 'A'}
-		]
 		card1 = new Card(suits[2], values[5], 1)
 	})
 	it('creates an instance of card', () => {
@@ -47,5 +36,26 @@ describe('Card constructor function', () => {
 
 	it('has a property renderValue', () => {
 		expect(card1.values).to.have.property('renderValue')
+	})
+})
+
+describe('makeDeck function', () => {
+	it('returns an error message when invoked with a non-number or a number less than 0', () => {
+		expect(makeDeck('hello')).to.equal('Invalid argument. Must pass a number greater than 0')
+		expect(makeDeck(-1)).to.equal('Invalid argument. Must pass a number greater than 0')
+		expect(makeDeck(true)).to.equal('Invalid argument. Must pass a number greater than 0')
+	})
+	it('returns an array', () => {
+		expect(Array.isArray(makeDeck())).to.equal(true)
+	})
+	
+	it('returns 1 deck when invoked with no arguements', () => {
+		expect(makeDeck()).to.have.lengthOf(52)
+	})
+
+	it('if number x is passed into function it returns x decks', () => {
+		expect(makeDeck(1)).to.have.lengthOf(52)
+		expect(makeDeck(2)).to.have.lengthOf(104)
+		expect(makeDeck(10)).to.have.lengthOf(520)
 	})
 })

@@ -1,5 +1,5 @@
-const suits = ['Spades', 'Diamonds', 'Clubs', 'Hearts']
-const values = [
+export const suits = ['Spades', 'Diamonds', 'Clubs', 'Hearts']
+export const values = [
   {sortValue: 1, renderValue: '2'},
   {sortValue: 2, renderValue: '3'},
   {sortValue: 3, renderValue: '4'},
@@ -21,10 +21,10 @@ export function Card(suit, values, pointValue) {
   this.pointValue = pointValue
 }
 
-export const makeDeck = (deckCount) => {
+export const makeDeck = (deckCount = 1) => {
   const deck = []
-  if(deckCount <= 0) {
-    return 'Invalid argument. Must pass in a number greater than 0'
+  if(deckCount <= 0 || typeof deckCount !== 'number') {
+    return 'Invalid argument. Must pass a number greater than 0'
   } else {
     while(deckCount > 0) {
       for(let i = 0; i < suits.length; i++) {

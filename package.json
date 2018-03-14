@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chai-spies": "^1.0.0",
     "chalk": "^2.3.1",
     "express": "^4.16.2",
     "react": "^16.2.0",
