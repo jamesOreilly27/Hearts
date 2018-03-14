@@ -15,7 +15,7 @@ const values = [
   {sortValue: 13, renderValue: 'A'}
 ]
 
-function Card(suit, values, pointValue) {
+export function Card(suit, values, pointValue) {
   this.suit = suit
   this.values = values
   this.pointValue = pointValue
@@ -41,7 +41,7 @@ export const makeDeck = (deckCount) => {
   }
 }
 
-const shuffle = (deck) => {
+export const shuffle = (deck) => {
   for(let i = 0; i < 1000; i++) {
     const location1 = Math.floor(Math.random() * deck.length)
     const location2 = Math.floor(Math.random() * deck.length)
@@ -53,7 +53,7 @@ const shuffle = (deck) => {
   }
 }
 
-const deal = (deck, hand1, hand2, hand3, hand4) => {
+export const deal = (deck, hand1, hand2, hand3, hand4) => {
   for(let i = 0; i < deck.length; i++) {
     if(i % 4 === 0) hand1.push(deck[i])
     else if(i % 4 === 1) hand2.push(deck[i])
