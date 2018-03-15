@@ -100,4 +100,27 @@ describe('deal function', () => {
 		expect(hand3).to.have.lengthOf(13)
 		expect(hand4).to.have.lengthOf(13)
 	})
+
+	it('passes instances of Card into four hands', () => {
+		hand1.forEach(card => {
+			expect(card).to.have.property('suit')
+			expect(card).to.have.property('values')
+			expect(card).to.have.property('pointValue')
+		})
+		hand2.forEach(card => {
+			expect(card).to.have.property('suit')
+			expect(card).to.have.property('values')
+			expect(card).to.have.property('pointValue')
+		})
+		hand3.forEach(card => {
+			expect(card).to.have.property('suit')
+			expect(card).to.have.property('values')
+			expect(card).to.have.property('pointValue')
+		})
+		hand4.forEach(card => {
+			expect(card).to.have.property('suit')
+			expect(card).to.have.property('values')
+			expect(card).to.have.property('pointValue')
+		})
+	})
 })
