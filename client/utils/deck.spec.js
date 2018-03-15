@@ -59,3 +59,24 @@ describe('makeDeck function', () => {
 		expect(makeDeck(10)).to.have.lengthOf(520)
 	})
 })
+
+describe('shuffle function', () => {
+	const deck = makeDeck()
+	const checkCard1 = deck[1]
+	const checkCard2 = deck[10]
+	const checkCard3 = deck[20]
+	const checkCard4 = deck[51]
+
+	
+	beforeEach(() => {
+		shuffle(deck)
+	})
+	it('changes the order of the deck', () => {
+		expect(deck[1]).to.not.equal(checkCard1)
+		expect(deck[10]).to.not.equal(checkCard2)
+		expect(deck[20]).to.not.equal(checkCard3)
+		expect(deck[51]).to.not.equal(checkCard4)
+	})
+})
+
+
