@@ -58,6 +58,15 @@ describe('makeDeck function', () => {
 		expect(makeDeck(2)).to.have.lengthOf(104)
 		expect(makeDeck(10)).to.have.lengthOf(520)
 	})
+
+	it('assigns the correct point values to cards', () => {
+		const deck = makeDeck()
+		deck.forEach(card => {
+			if(card.suit === 'Hearts') expect(card.pointValue).to.equal(1)
+			else if(card.suit === 'Spades' && card.values.renderValue === 'Q') expect(card.pointValue).to.equal(13)
+			else expect(card.pointValue).to.equal(0)
+		})
+	})
 })
 
 describe('shuffle function', () => {
