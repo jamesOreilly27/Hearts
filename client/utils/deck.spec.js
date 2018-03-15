@@ -79,4 +79,25 @@ describe('shuffle function', () => {
 	})
 })
 
+describe('deal function', () => {
+	const deck = makeDeck()
+	let hand1 = []
+	let hand2 = []
+	let hand3 = []
+	let hand4 = []
+	beforeEach(() => {
+		hand1 = []
+		hand2 = []
+		hand3 = []
+		hand4 = []
+		shuffle(deck)
+		deal(deck, hand1, hand2, hand3, hand4)
+	})
 
+	it('divides cards equally between 4 hands', () => {
+		expect(hand1).to.have.lengthOf(13)
+		expect(hand2).to.have.lengthOf(13)
+		expect(hand3).to.have.lengthOf(13)
+		expect(hand4).to.have.lengthOf(13)
+	})
+})
