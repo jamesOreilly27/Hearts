@@ -13,7 +13,7 @@ const CardContainer = styled.button`
 	border: ${props => props.selected ? '2px solid green' : '1px solid black'};
 	text-align: center;
 	color: ${props => colorProvider(props.suit)};
-	font-size: ${props => props.sideCard ? '.7em' : '.9em'}
+	font-size: .8em;
 `
 
 const truncate = string => {

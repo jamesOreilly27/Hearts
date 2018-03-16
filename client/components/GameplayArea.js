@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `
 
 const MiddleContainer = styled.div`
-	width: 96vw;
+	margin: 1em 0;
 	display: flex;
 	justify-content: space-between;
 `
