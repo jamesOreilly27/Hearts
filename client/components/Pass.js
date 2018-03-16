@@ -34,12 +34,10 @@ class Pass extends Component {
 		const passTo = this.passWhere(this.props.handCount)
 		return (
 			<Wrapper>
-				<div>
-					<div> Select Cards to Pass </div>
-					<PassButton onClick={this.props.handleClick}>
-						Pass {passTo}
-					</PassButton>
-				</div>
+				<div> Select 3 Cards </div>
+				<PassButton onClick={this.props.handleClick}>
+					Pass {passTo}
+				</PassButton>
 			</Wrapper>
 		)
 	}
