@@ -133,3 +133,18 @@ describe('deal function', () => {
 		})
 	})
 })
+
+describe('sortHand function', () => {
+	const deck = makeDeck()
+	sortHand(deck)
+	it('sorts the cards alphabetically by suit', () => {
+		expect(deck[0].suit).to.equal('Clubs')
+		expect(deck[12].suit).to.equal('Clubs')
+		expect(deck[13].suit).to.equal('Diamonds')
+		expect(deck[25].suit).to.equal('Diamonds')
+		expect(deck[26].suit).to.equal('Hearts')
+		expect(deck[38].suit).to.equal('Hearts')
+		expect(deck[39].suit).to.equal('Spades')
+		expect(deck[51].suit).to.equal('Spades')
+	})
+})
