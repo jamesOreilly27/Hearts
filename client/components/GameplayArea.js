@@ -7,6 +7,9 @@ const Wrapper = styled.div`
   width: 96vw;
   height: 96vh;
 	margin: 1.5vh 1.5vw;
+	display: flex;
+	flex-direction: column;
+	align-items: space-between;
 `
 
 const MiddleContainer = styled.div`
@@ -15,18 +18,19 @@ const MiddleContainer = styled.div`
 	justify-content: space-between;
 `
 
-const Comp2Container = HandWrapper.extend`
-	margin: 0 auto;
+const Comp2Container = styled.div`
+	display: flex;
+	justify-content: center;
 `
-const Comp1Container = HandWrapper.extend`
-	width: 10vw;
-`
-const Comp3Container = HandWrapper.extend`
-	width: 10vw;
-`
-const UserContainer = HandWrapper.extend`
-	margin: 0 auto;
+const Comp1Container = styled.div`
 
+`
+const Comp3Container = styled.div`
+
+`
+const UserContainer = styled.div`
+	display: flex;
+	justify-content: center;
 `
 
 const GameplayArea = ({ hands }) => {

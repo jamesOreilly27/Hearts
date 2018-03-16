@@ -7,10 +7,12 @@ import passCards from '../../utils/passingCards'
 import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk } from '../../store'
 
 export const HandWrapper = styled.div`
-  width: 80%;
-  margin: ${props => props.sideHand ? 'none' : '0 auto'};
+  display: flex;
+  flex-direction: ${props => props.user ? 'column' : 'row'};
+  align-items: ${props => (props.user || props.sideHand) ? 'center' : ''};
+  justify-content: ${props => (props.user || props.sideHand) ? '' : 'center'}
 `
-
+//margin: ${props => props.sideHand ? 'none' : '0 auto'};
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -21,6 +23,7 @@ const PassButton = Button.extend`
   background-color: #38A1F3;
   color: #FFF;
   text-align: center;
+  margin-bottom: .5em;
 `
 
 const passWhere = (handCount) => {
