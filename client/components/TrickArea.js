@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk } from '../store'
+import passCards from '../utils/passingCards'
+import { Pass } from '../components'
 
 const Wrapper = styled.div`
 	display: flex;
@@ -29,19 +33,63 @@ const BottomCard = styled.div`
 	display: flex;
 	justify-content: center;
 `
-const TrickArea = props => {
-	return (
-		<Wrapper>
-			<Container>
-				<TopCard> Hello </TopCard>
-				<MiddleContainer> 
-					<div> Hello </div>
-					<div> World! </div>
-				</MiddleContainer>
-				<BottomCard> HelloWorld </BottomCard>
-			</Container>
-		</Wrapper>
-	)
+class TrickArea extends Component {
+	constructor(props) {
+		super(props)
+		this.state = { donePassing: false }
+		this.handleClick = this.handleClick.bind(this)
+	}
+
+	handleClick() {
+		this.props.completePass(
+      passCards(
+      	this.props.handCount,
+				this.props.passCards,
+				this.props.hands.user,
+				this.props.hands.comp1,
+				this.props.hands.comp2,
+				this.props.hands.comp3
+      )
+		)
+		this.props.incrementHandCount(this.props.handCount)
+  	this.props.resetUserPassCards()
+    this.setState({ donePassing: true })
+	}
+
+	render() {
+		return (
+			<Wrapper>
+				{!this.state.donePassing ?
+					<Pass handleClick={this.handleClick}/>
+					:
+					<Container>
+						<TopCard> Hello </TopCard>
+						<MiddleContainer> 
+							<div> Hello </div>
+							<div> World! </div>
+						</MiddleContainer>
+						<BottomCard> HelloWorld </BottomCard>
+					</Container>
+				}
+			</Wrapper>
+		)
+	}
 }
 
-export default TrickArea
+const mapState = ({ hands, passCards, handCount }) => ({ hands, passCards, handCount })
+
+const mapDispatch = dispatch => {
+	return {
+		completePass(newHands) {
+			dispatch(passCardsThunk(newHands))
+		},
+		incrementHandCount(int) {
+			dispatch(incrementHandCountThunk(int))
+		},
+		resetUserPassCards() {
+			dispatch(clearPasscardsThunk())
+		}
+	}
+}
+
+export default connect(mapState, mapDispatch)(TrickArea)
