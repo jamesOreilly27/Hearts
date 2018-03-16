@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { Button } from '../components'
-import passCards from '../utils/passingCards'
 
 const Wrapper = styled.div`
 	display: flex;
