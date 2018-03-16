@@ -136,15 +136,31 @@ describe('deal function', () => {
 
 describe('sortHand function', () => {
 	const deck = makeDeck()
+	shuffle(deck)
 	sortHand(deck)
 	it('sorts the cards alphabetically by suit', () => {
-		expect(deck[0].suit).to.equal('Clubs')
-		expect(deck[12].suit).to.equal('Clubs')
-		expect(deck[13].suit).to.equal('Diamonds')
-		expect(deck[25].suit).to.equal('Diamonds')
-		expect(deck[26].suit).to.equal('Hearts')
-		expect(deck[38].suit).to.equal('Hearts')
-		expect(deck[39].suit).to.equal('Spades')
-		expect(deck[51].suit).to.equal('Spades')
+		for(let i = 0; i < 13; i ++) {
+			expect(deck[i].suit).to.equal('Clubs')
+		}
+
+		for(let i = 13; i < 26; i++) {
+			expect(deck[i].suit).to.equal('Diamonds')
+		}
+
+		for(let i = 26; i < 38; i++) {
+			expect(deck[i].suit).to.equal('Hearts')
+		}
+
+		for(let i = 39; i < 51; i++) {
+			expect(deck[i].suit).to.equal('Spades')
+		}
+	})
+
+	it('sorts cards by value from 2 - A', () => {
+		const first13 = []
+		for(let i = 0; i < 13; i++) {
+			first13.push(deck[i].values.renderValue)
+		}
+		expect(first13).to.deep.equal(['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'])
 	})
 })
