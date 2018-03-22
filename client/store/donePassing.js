@@ -5,7 +5,7 @@ const pass = () => ({
   payload: true
 })
 
-const flipPassSwitch = dispatch => {
+export const flipPassSwitch = dispatch => {
   dispatch(pass())
 }
 
