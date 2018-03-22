@@ -49,7 +49,7 @@ class Card extends Component {
 				suit={card.suit}
 				sideCard={sideCard}
 				onClick={this.handleClick}
-				selected={this.state.selectedForPass}
+				selected={this.state.selectedForPass && !this.props.donePassing}
 			>
 				<div>
 					{card.values.renderValue}
@@ -62,7 +62,7 @@ class Card extends Component {
 	}
 } 
 
-const mapState = ({ passCards }) => ({ passCards })
+const mapState = ({ passCards, donePassing }) => ({ passCards, donePassing })
 
 const mapDispatch = dispatch => {
 	return {

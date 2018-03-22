@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk } from '../store'
+import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk, flipPassSwitch } from '../store'
 import passCards from '../utils/passingCards'
 import { Pass } from '../components'
 
@@ -36,7 +36,6 @@ const BottomCard = styled.div`
 class TrickArea extends Component {
 	constructor(props) {
 		super(props)
-		this.state = { donePassing: false }
 		this.handleClick = this.handleClick.bind(this)
 	}
 
@@ -49,17 +48,15 @@ class TrickArea extends Component {
 				this.props.hands.comp1,
 				this.props.hands.comp2,
 				this.props.hands.comp3
-      )
+			),
+			this.props.handCount
 		)
-		this.props.incrementHandCount(this.props.handCount)
-  	this.props.resetUserPassCards()
-    this.setState({ donePassing: true })
 	}
 
 	render() {
 		return (
 			<Wrapper>
-				{!this.state.donePassing ?
+				{!this.props.donePassing ?
 					<Pass handleClick={this.handleClick}/>
 					:
 					<Container>
@@ -76,12 +73,15 @@ class TrickArea extends Component {
 	}
 }
 
-const mapState = ({ hands, passCards, handCount }) => ({ hands, passCards, handCount })
+const mapState = ({ hands, passCards, handCount, donePassing }) => ({ hands, passCards, handCount, donePassing })
 
 const mapDispatch = dispatch => {
 	return {
-		completePass(newHands) {
+		completePass(newHands, int) {
 			dispatch(passCardsThunk(newHands))
+			dispatch(incrementHandCountThunk(int))
+			dispatch(clearPasscardsThunk())
+			dispatch(flipPassSwitch(true))
 		},
 		incrementHandCount(int) {
 			dispatch(incrementHandCountThunk(int))

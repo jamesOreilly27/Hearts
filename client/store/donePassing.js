@@ -1,17 +1,17 @@
-const PASS_CARDS = 'PASS_CARDS'
+const FLIP_SWITCH = 'FLIP_SWITCH'
 
-const pass = () => ({
-  type: PASS_CARDS,
-  payload: true
+const pass = bool => ({
+  type: FLIP_SWITCH,
+  payload: bool
 })
 
-export const flipPassSwitch = dispatch => {
-  dispatch(pass())
+export const flipPassSwitch = bool => dispatch => {
+  dispatch(pass(bool))
 }
 
 const reducer = (donePassing = false, action) => {
   switch(action.type) {
-    case PASS_CARDS:
+    case FLIP_SWITCH:
       return true
     default:
       return false
