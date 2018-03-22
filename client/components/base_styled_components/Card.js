@@ -25,10 +25,11 @@ class Card extends Component {
 		super(props);
 		this.state = { selectedForPass: false }
 
-		this.handleClick = this.handleClick.bind(this)
+		this.handlePrePassClick = this.handlePrePassClick.bind(this)
+		this.handlePostPassClick = this.handlePostPassClick.bind(this)
 	}
 
-	handleClick() {
+	handlePrePassClick() {
 		if(!this.state.selectedForPass) {
 			this.props.passCards.length < 3 ? 
 				this.props.selectCard(this.props.card) 
@@ -42,13 +43,17 @@ class Card extends Component {
 		}
 	}
 
+	handlePostPassClick() {
+		console.log('HELLO WORLD')
+	}
+
 	render() {
 		const { card, sideCard } = this.props
 		return (
 			<CardContainer
 				suit={card.suit}
 				sideCard={sideCard}
-				onClick={this.handleClick}
+				onClick={!this.props.donePassing ? this.handlePrePassClick : this.handlePostPassClick}
 				selected={this.state.selectedForPass && !this.props.donePassing}
 			>
 				<div>

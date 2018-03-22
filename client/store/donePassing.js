@@ -12,9 +12,9 @@ export const flipPassSwitch = bool => dispatch => {
 const reducer = (donePassing = false, action) => {
   switch(action.type) {
     case FLIP_SWITCH:
-      return true
+      return action.payload
     default:
-      return false
+      return donePassing
   }
 }
 

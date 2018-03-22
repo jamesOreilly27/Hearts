@@ -1,6 +1,7 @@
 /***** ACTION TYPE VARIABLES*****/
 const DEAL_CARDS = 'DEAL_CARDS'
 const PASS_CARDS = 'PASS_CARDS'
+const PLAY_CARD = 'PLAY_CARD'
 
 /***** ACTION CREATORS *****/
 const dealCards = hands => ({
@@ -13,9 +14,15 @@ const passCards = hands => ({
   payload: hands
 })
 
+const playCard = hands => ({
+  type: PLAY_CARD,
+  payload: hands
+})
 /***** THUNKS *****/
 export const dealCardsThunk = hands => dispatch => dispatch(dealCards(hands))
 export const passCardsThunk = hands => dispatch => dispatch(passCards(hands))
+export const playCardThunk = hands => dispatch => dispatch(playCard(hands))
+
 
 
 const reducer = (hands = {}, action) => {
@@ -23,6 +30,8 @@ const reducer = (hands = {}, action) => {
     case DEAL_CARDS:
       return action.payload
     case PASS_CARDS:
+      return action.payload
+    case PLAY_CARD:
       return action.payload
     default:
       return hands
