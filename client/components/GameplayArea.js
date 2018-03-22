@@ -44,9 +44,7 @@ const GameplayArea = ({ hands }) => {
 				<Comp1Container sideHand>
 					<Hand hand={hands.comp1} sideHand/>
 				</Comp1Container>
-				<TrickArea>
-					Hello World!
-				</TrickArea>
+				<TrickArea />
 				<Comp3Container sideHand>
 					<Hand hand={hands.comp3} sideHand/>
 				</Comp3Container>
