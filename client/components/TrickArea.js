@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk, flipPassSwitch, setLeadThunk } from '../store'
+import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk, flipPassSwitch, setFullLeadThunk } from '../store'
 import passCards from '../utils/passingCards'
 import { findTwoOfClubs } from '../utils/playingHand'
 import { Pass } from '../components'
@@ -83,7 +83,7 @@ const mapDispatch = (dispatch) => {
 			dispatch(incrementHandCountThunk(int))
 			dispatch(clearPasscardsThunk())
 			dispatch(flipPassSwitch(true))
-			dispatch(setLeadThunk(findTwoOfClubs(newHands)))
+			dispatch(setFullLeadThunk('Clubs', findTwoOfClubs(newHands)))
 		},
 		incrementHandCount(int) {
 			dispatch(incrementHandCountThunk(int))
