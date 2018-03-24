@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk, flipPassSwitch } from '../store'
+import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk, flipPassSwitch, setLeadThunk } from '../store'
 import passCards from '../utils/passingCards'
+import { findTwoOfClubs } from '../utils/playingHand'
 import { Pass } from '../components'
 
 const Wrapper = styled.div`
@@ -73,15 +74,16 @@ class TrickArea extends Component {
 	}
 }
 
-const mapState = ({ hands, passCards, handCount, donePassing }) => ({ hands, passCards, handCount, donePassing })
+const mapState = ({ hands, passCards, handCount, donePassing, leadPlayer }) => ({ hands, passCards, handCount, donePassing, leadPlayer })
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
 	return {
 		completePass(newHands, int) {
 			dispatch(passCardsThunk(newHands))
 			dispatch(incrementHandCountThunk(int))
 			dispatch(clearPasscardsThunk())
 			dispatch(flipPassSwitch(true))
+			dispatch(setLeadThunk(findTwoOfClubs(newHands)))
 		},
 		incrementHandCount(int) {
 			dispatch(incrementHandCountThunk(int))

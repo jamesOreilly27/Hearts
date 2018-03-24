@@ -12,7 +12,5 @@ export const findTwoOfClubs = hands => {
         const card = cards[i]
         if(card.suit === 'Clubs' && card.values.renderValue === '2') hasTwo = players[i]
     }
-    return hasTwo
+    return hands[hasTwo]
 }
-
-

@@ -7,12 +7,12 @@ const setLead = player => ({
 
 export const setLeadThunk = player => dispatch => dispatch(setLead(player))
 
-const reducer = (player = {}, action) => {
+const reducer = (leadPlayer = {}, action) => {
   switch(action.type) {
     case SET_LEAD_PLAYER:
       return action.payload
     default:
-      return player
+      return leadPlayer
   }
 }
 
