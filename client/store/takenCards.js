@@ -28,13 +28,13 @@ const addCardsThunk = (player, cards) => dispatch => dispatch(addCards(player, c
 const reducer = (takenCards = {user: [], comp1: [], comp2: [], comp3: []}, action) => {
   switch(action.type) {
     case ADD_USER_CARDS:
-      return Object.assign({}, takenCards, { user: takenCards[user].concat(action.payload) })
+      return { ...takenCards, user: takenCards[user].concat(action.payload) }
     case ADD_COMP1_CARDS:
-      return Object.assign({}, takenCards, { comp1: takenCards[comp1].concat(action.payload) })
+      return {...takenCards, comp1: takenCards[comp1].concat(action.payload) }
     case ADD_COMP2_CARDS:
-      return Object.assign({}, takenCards, { comp2: takenCards[comp2].concat(action.payload) })
+      return {...takenCards, comp1: takenCards[comp2].concat(action.payload) }
     case ADD_COMP3_CARDS:
-      return Object.assign({}, takenCards, { comp3: takenCards[comp3].concat(action.payload) })
+      return {...takenCards, comp1: takenCards[comp3].concat(action.payload) }
     default:
       return takenCards
   }
