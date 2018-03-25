@@ -1,10 +1,10 @@
-const SET_LEAD_PLAYER = 'SET_LEAD_PLAYER'
+const SET_LEAD_HAND = 'SET_LEAD_HAND'
 const SET_LEAD_SUIT = 'SET_LEAD_SUIT'
 const SET_FULL_LEAD = 'SET_FULL_LEAD'
 
-const setLeadPlayer = player => ({
-  type: SET_LEAD_PLAYER,
-  payload: player
+const setLeadHand = hand => ({
+  type: SET_LEAD_HAND,
+  payload: hand
 })
 
 const setLeadSuit = suit => ({
@@ -12,23 +12,23 @@ const setLeadSuit = suit => ({
   payload: suit
 })
 
-const setFullLead = (suit, player) => ({
+const setFullLead = (suit, hand) => ({
   type: SET_FULL_LEAD,
-  payload: { suit, player }
+  payload: { suit, hand }
 })
 
 
 
-export const setLeadPlayerThunk = player => dispatch => dispatch(setLeadPlayer(player))
+export const setLeadHandThunk = hand => dispatch => dispatch(setLeadHand(hand))
 export const setLeadSuitThunk = suit => dispatch => dispatch(setLeadSuit(suit))
-export const setFullLeadThunk = (suit, player) => dispatch => dispatch(setFullLead(suit, player))
+export const setFullLeadThunk = (suit, hand) => dispatch => dispatch(setFullLead(suit, hand))
 
-const reducer = (lead = { suit: '', player: {} }, action) => {
+const reducer = (lead = { suit: '', hand: {} }, action) => {
   switch(action.type) {
-    case SET_LEAD_PLAYER:
-      return { suit: lead.suit, player: action.payload }
+    case SET_LEAD_HAND:
+      return Object.assign({}, { hand: action.payload, suit: lead.suit })
     case SET_LEAD_SUIT:
-      return { suit: action.payload, player: lead.player }
+      return Object.assign({}, { hand: lead.hand, suit: action.payload })
     case SET_FULL_LEAD:
       return action.payload
     default:
