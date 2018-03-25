@@ -8,8 +8,9 @@ import handCount from './handCount'
 import donePassing from './donePassing'
 import lead from './lead'
 import trick from './trick'
+import takenCards from './takenCards'
 
-const reducer = combineReducers({ hands, passCards, handCount, donePassing, lead, trick })
+const reducer = combineReducers({ hands, passCards, handCount, donePassing, lead, trick, takenCards })
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -25,3 +26,4 @@ export * from './handCount'
 export * from './donePassing'
 export * from './lead'
 export * from './trick'
+export * from './takenCards'

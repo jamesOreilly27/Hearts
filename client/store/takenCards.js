@@ -25,7 +25,7 @@ const addCards = (player, cards) => {
 
 const addCardsThunk = (player, cards) => dispatch => dispatch(addCards(player, cards))
 
-const reducer = (takenCards = {}, action) => {
+const reducer = (takenCards = {user: [], comp1: [], comp2: [], comp3: []}, action) => {
   switch(action.type) {
     case ADD_USER_CARDS:
       return Object.assign({}, takenCards, { user: takenCards[user].concat(action.payload) })
@@ -39,3 +39,5 @@ const reducer = (takenCards = {}, action) => {
       return takenCards
   }
 }
+
+export default reducer
