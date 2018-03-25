@@ -15,7 +15,7 @@ export const findTwoOfClubsOwner = hands => {
   return hasTwo
 }
 
-export const selectComputerCard = ({ hand, suit }) => {
+export const selectComputerCard = ({ suit, player, hand }) => {
   let selection = {}
   let randomNumber
 

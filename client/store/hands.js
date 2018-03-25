@@ -14,14 +14,14 @@ const passCards = hands => ({
   payload: hands
 })
 
-const playCard = hands => ({
+const updateHandsAfterPlayedCard = hands => ({
   type: PLAY_CARD,
   payload: hands
 })
 /***** THUNKS *****/
 export const dealCardsThunk = hands => dispatch => dispatch(dealCards(hands))
 export const passCardsThunk = hands => dispatch => dispatch(passCards(hands))
-export const playCardThunk = hands => dispatch => dispatch(playCard(hands))
+export const playCardThunk = hands => dispatch => dispatch(updateHandsAfterPlayedCard(hands))
 
 
 
