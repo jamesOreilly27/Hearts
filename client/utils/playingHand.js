@@ -4,15 +4,15 @@
 
 export const findTwoOfClubs = hands => {
   let hasTwo;
-    const { user, comp1, comp2, comp3 } = hands
-    const cards = [user[0], comp1[0], comp2[0], comp3[0]]
-    const players = ['user', 'comp1', 'comp2', 'comp3']
+  const { user, comp1, comp2, comp3 } = hands
+  const cards = [user[0], comp1[0], comp2[0], comp3[0]]
+  const players = ['user', 'comp1', 'comp2', 'comp3']
     
-    for(let i = 0; i < cards.length; i++) {
-      const card = cards[i]
-      if(card.suit === 'Clubs' && card.values.renderValue === '2') hasTwo = players[i]
-    }
-    return hands[hasTwo]
+  for(let i = 0; i < cards.length; i++) {
+    const card = cards[i]
+    if(card.suit === 'Clubs' && card.values.renderValue === '2') hasTwo = players[i]
+  }
+  return hands[hasTwo]
 }
 
 export const selectComputerCard = ({ hand, suit }) => {
