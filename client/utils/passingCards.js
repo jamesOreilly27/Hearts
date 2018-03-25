@@ -5,9 +5,7 @@ const removeRandomIndex = array => {
   return array.slice(0, random).concat(array.slice(random + 1))
 }
 
-const removeThree = array => {
-  return removeRandomIndex(removeRandomIndex(removeRandomIndex(array)))
-}
+const removeThree = array => removeRandomIndex(removeRandomIndex(removeRandomIndex(array)))
 
 const setSingleCompPassCards = (hand, holdCards) => {
 	return hand.filter(card => {
