@@ -32,6 +32,11 @@ export const selectComputerCard = ({ hand, suit }) => {
   return selection
 }
 
+export const removePlayedCard = (hand, selectedCard) => {
+  const pullIndex = hand.indexOf(selectedCard)
+  return hand.slice(0, pullIndex).concat(hand.slice(pullIndex + 1))
+}
+
 export const findWhoTakesTrick = (trick, suit, player, newCard) => {
   const { playerToTake, cards } = trick
   let currentLeader = 0
