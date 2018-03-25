@@ -11,7 +11,7 @@ const updatePlayerToTake = player => ({
   payload: player
 })
 
-const addCardThunk = card => dispatch => dispatch(addCard(card))
+export const addCardThunk = card => dispatch => dispatch(addCard(card))
 
 const reducer = (trick = { playerToTake: '', cards: [] }, action) => {
   switch(action.type) {
