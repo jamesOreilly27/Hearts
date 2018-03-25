@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk, flipPassSwitch, setFullLeadThunk } from '../store'
 import passCards from '../utils/passingCards'
-import { findTwoOfClubs } from '../utils/playingHand'
+import { findTwoOfClubsOwner } from '../utils/playingHand'
 import { Pass } from '../components'
 
 const Wrapper = styled.div`
@@ -79,11 +79,13 @@ const mapState = ({ hands, passCards, handCount, donePassing, leadPlayer }) => (
 const mapDispatch = (dispatch) => {
 	return {
 		completePass(newHands, int) {
+      const owner = findTwoOfClubsOwner(newHands)
+      const leadHand = newHands[owner]
 			dispatch(passCardsThunk(newHands))
 			dispatch(incrementHandCountThunk(int))
 			dispatch(clearPasscardsThunk())
 			dispatch(flipPassSwitch(true))
-			dispatch(setFullLeadThunk('Clubs', findTwoOfClubs(newHands)))
+			dispatch(setFullLeadThunk('Clubs', owner, leadHand ))
 		},
 		incrementHandCount(int) {
 			dispatch(incrementHandCountThunk(int))
