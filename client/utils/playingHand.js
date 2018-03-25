@@ -31,3 +31,17 @@ export const selectComputerCard = ({ hand, suit }) => {
 
   return selection
 }
+
+export const findWhoTakesTrick = (trick, suit, player, newCard) => {
+  const { playerToTake, cards } = trick
+  let currentLeader = 0
+  
+  if(newCard.suit !== suit) return playerToTake
+  
+  cards.forEach(card => {
+    if(card.values.sortValue > currentLeader) currentLeader = card.values.sortValue
+  })
+  
+  if(newCard.values.sortValue > currentLeader) return player
+  else return playerToTake
+}
