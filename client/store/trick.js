@@ -12,11 +12,12 @@ const updatePlayerToTake = player => ({
 })
 
 export const addCardThunk = card => dispatch => dispatch(addCard(card))
+export const updatePlayerThunk = player => dispatch => dispatch(updatePlayerToTake(player))
 
 const reducer = (trick = { playerToTake: '', cards: [] }, action) => {
   switch(action.type) {
     case ADD_CARD:
-      return { ...trick, cards: trick[cards].concat(action.payload) }
+      return { ...trick, cards: trick.cards.concat(action.payload) }
     case UPDATE_PLAYER_TO_TAKE:
       return { ...trick, player: action.payload }
     default:

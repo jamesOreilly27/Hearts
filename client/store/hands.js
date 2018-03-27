@@ -18,6 +18,7 @@ const updateHandsAfterPlayedCard = hands => ({
   type: PLAY_CARD,
   payload: hands
 })
+
 /***** THUNKS *****/
 export const dealCardsThunk = hands => dispatch => dispatch(dealCards(hands))
 export const passCardsThunk = hands => dispatch => dispatch(passCards(hands))

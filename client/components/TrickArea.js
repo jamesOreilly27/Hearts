@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk, flipPassSwitch, setFullLeadThunk } from '../store'
+import { passCardsThunk, incrementHandCountThunk, clearPasscardsThunk, flipPassSwitch, setFullLeadThunk, setLeadPlayerThunk, addCardThunk, playCardThunk, updatePlayerThunk} from '../store'
 import passCards from '../utils/passingCards'
-import { findTwoOfClubsOwner } from '../utils/playingHand'
+import { findTwoOfClubsOwner, selectComputerCard, removePlayedCard, findWhoTakesTrick } from '../utils/playingHand'
 import { Pass } from '../components'
 
 const Wrapper = styled.div`
@@ -51,7 +51,9 @@ class TrickArea extends Component {
 				this.props.hands.comp3
 			),
 			this.props.handCount
-		)
+    )
+    
+    this.props.buildTrick(this.props.lead, this.props.trick, this.props.hands)
 	}
 
 	render() {
@@ -74,7 +76,7 @@ class TrickArea extends Component {
 	}
 }
 
-const mapState = ({ hands, passCards, handCount, donePassing, leadPlayer }) => ({ hands, passCards, handCount, donePassing, leadPlayer })
+const mapState = ({ hands, passCards, handCount, donePassing, lead, trick }) => ({ hands, passCards, handCount, donePassing, lead, trick })
 
 const mapDispatch = (dispatch) => {
 	return {
@@ -86,13 +88,19 @@ const mapDispatch = (dispatch) => {
 			dispatch(clearPasscardsThunk())
 			dispatch(flipPassSwitch(true))
 			dispatch(setFullLeadThunk('Clubs', owner, leadHand ))
-		},
-		incrementHandCount(int) {
-			dispatch(incrementHandCountThunk(int))
-		},
-		resetUserPassCards() {
-			dispatch(clearPasscardsThunk())
-		}
+    },
+    buildTrick(lead, trick, hands) {
+      console.log('LEAD', lead)
+      while(trick.cards.length < 4) {
+        if(lead.player !== 'user') {
+          const card = selectComputerCard(lead)
+          dispatch(addCardThunk(card))
+          dispatch(updatePlayerThunk(findWhoTakesTrick(trick, lead.suit, lead.player, card)))
+          dispatch(playCardThunk(Object.assign({}, hands, removePlayedCard(hand, card))))
+          dispatch(setLeadPlayerThunk(lead.player, hands))
+        }
+      }
+    }
 	}
 }
 

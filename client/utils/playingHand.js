@@ -25,16 +25,17 @@ export const selectComputerCard = ({ suit, player, hand }) => {
     randomNumber = Math.floor(Math.random() * playableCards.length)
     selection = playableCards[randomNumber]
   } else {
-    randomNum = Math.floor(Math.random() * hand.length)
-    selection = lead.hand[randomNumber]
+    randomNumber = Math.floor(Math.random() * hand.length)
+    selection = hand[randomNumber]
   }
-
+  console.log('RANDOM NUMBER', randomNumber)
   return selection
 }
 
-export const removePlayedCard = (hand, selectedCard) => {
+export const removePlayedCard = (hand, selectedCard, player) => {
   const pullIndex = hand.indexOf(selectedCard)
-  return hand.slice(0, pullIndex).concat(hand.slice(pullIndex + 1))
+  const newHand = hand.slice(0, pullIndex).concat(hand.slice(pullIndex + 1))
+  return { player: newHand }
 }
 
 export const findWhoTakesTrick = (trick, suit, player, newCard) => {
